@@ -3,6 +3,7 @@ using FinancialFlow.Core.Interfaces;
 using FinancialFlow.Core.Queue;
 using FinancialFlow.Domain.Entities;
 using FinancialFlow.Domain.Interfaces;
+using FinancialFlow.Domain.Validations;
 using Microsoft.Extensions.Logging;
 
 namespace FinancialFlow.Domain.Services
@@ -22,14 +23,20 @@ namespace FinancialFlow.Domain.Services
         public async Task<bool> AddFinancialTransaction(FinancialTransaction financialTransaction)
         {
             financialTransaction.SetId();
+
+            if (!PerformValidations(new FinancialTransactionValidation(), financialTransaction))
+            {
+                _logger.LogError("Existem incosistencias no cadastro");
+                Notify("Existem incosistencias no cadastro");
+                return false;
+            }
+
             await _transactionsRepository.AddFinancialTransaction(financialTransaction);
             var commit = await _transactionsRepository.UnitOfWork.Commit();
 
             if (commit)
-            {
                 _logger.LogInformation("Lançamento realizado com sucesso");
-                //TODO: CHAMAR O METODO CONSOLIDAÇÃO
-            }
+
 
             return commit;
         }

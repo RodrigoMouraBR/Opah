@@ -41,6 +41,8 @@ builder.Services.AddAutoMapper(typeof(FinancialFlowMappingConfig));
 
 #endregion
 
+
+
 var app = builder.Build();
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 

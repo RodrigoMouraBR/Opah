@@ -6,7 +6,6 @@ using FinancialFlow.Core.EnvironmentVariable;
 using FinancialFlow.Core.IoC;
 using FinancialFlow.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -154,13 +153,13 @@ using (var scope = host.Services.CreateScope())
 
 }
 
-
 static IServiceCollection ResolveDependencies(IServiceCollection services)
 {
     services.AddAutoMapper(typeof(FinancialFlowMappingConfig));
     CoreIoC.CoreIoCServices(services);
     InversionOfControl.RegisterServices(services);
-    
+    services.AddSingleton<EnvironmentVariableRepository>();
+
     var postgresHost = EnvironmentVariableRepository.postgrehost;
     var postgresUser = EnvironmentVariableRepository.postgreuser;
     var postgresPassword = EnvironmentVariableRepository.postgrepassword;
