@@ -28,6 +28,15 @@ Serviço do consolidado diário
 #### Docker
 A aplicação está pronta para rodar em container Docker, possui Dockerfile e Docker Compose.
 
+#### Teste unitário:
+Para o teste unitário está utilizando a aplicação está utilizando o XUnit e alguns recursos como:
+  - Bogus: Bogus é um gerador de dados fake simples para linguagens .NET como C#
+  - MOQ: (pronuncia-se "Mock-you" ou apenas "Mock"). O Moq foi projetado para ser uma maneira muito prática, discreta e direta de configurar rapidamente dependências para seus testes.
+
+#### RabbitMQ
+Recurso de service broker (mensageria)
+
+
 #### IMPORTANTE:
   - É preciso utilizar update-database para rodar as atualizações de banco de dados o banco de dados (utilização de migrations do EF)
  
