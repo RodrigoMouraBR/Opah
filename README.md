@@ -4,6 +4,9 @@
 #### Descrição da Solução
 Esta solução visa atender a necessidade de um comerciante em controlar seu fluxo de caixa diário, gerenciando lançamentos (débitos e créditos e pix) e gerando relatórios de saldo diário, mensal e anual consolidado.
 
+Link desenho arquitetura: https://drive.google.com/file/d/1mvTrYw0f5qpBEu5WJOqHYItnuRG6K-gf/view?usp=sharing
+
+
 #### Estrutura do Projeto
 A solução está estruturada em quatro camadas principais e o CORE (onde utilizar classes que são reutilizaveis)
 
