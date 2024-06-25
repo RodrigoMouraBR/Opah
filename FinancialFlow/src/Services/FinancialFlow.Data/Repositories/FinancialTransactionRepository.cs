@@ -22,7 +22,7 @@ namespace FinancialFlow.Data.Repositories
         public async Task<IEnumerable<MonthlyConsolidatedReport>> GetMonthlyConsolidatedReportAsync()
         {
             var results = await _context.FinancialTransactions
-                .GroupBy(t => new { t.CustomerId, YearMonth = new DateTime(t.DateCad.Year, t.DateCad.Month, 1) })
+                .GroupBy(t => new { t.CustomerId, YearMonth = new DateTime(t.DateRef.Year, t.DateRef.Month, 1) })
                 .Select(g => new MonthlyConsolidatedReport
                 {
                     CustomerId = g.Key.CustomerId,
@@ -37,7 +37,7 @@ namespace FinancialFlow.Data.Repositories
         public async Task<IEnumerable<DailyConsolidatedReport>> GetDailyConsolidatedReportAsync()
         {
             var dailyResults = await _context.FinancialTransactions
-            .GroupBy(t => new { t.CustomerId, t.DateCad.Date })
+            .GroupBy(t => new { t.CustomerId, t.DateRef.Date })
             .Select(g => new DailyConsolidatedReport
             {
                 CustomerId = g.Key.CustomerId,
@@ -53,7 +53,7 @@ namespace FinancialFlow.Data.Repositories
         public async Task<IEnumerable<YearlyConsolidatedReport>> GetYearlyConsolidatedReportAsync()
         {
             var yearlyResults = await _context.FinancialTransactions
-            .GroupBy(t => new { t.CustomerId, t.DateCad.Year })
+            .GroupBy(t => new { t.CustomerId, t.DateRef.Year })
             .Select(g => new YearlyConsolidatedReport
             {
                 CustomerId = g.Key.CustomerId,

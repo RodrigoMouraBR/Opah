@@ -79,9 +79,9 @@ namespace FinancialFlow.API.Configuration
         {
             var info = new OpenApiInfo()
             {
-                Title = "API - Carrefas",
+                Title = "API - CARREFOUR",
                 Version = description.ApiVersion.ToString(),
-                Description = "Esta API faz parte do teste Carrefoue.",
+                Description = "Esta API faz parte do teste Carrefour.",
                 Contact = new OpenApiContact() { Name = "C4", Email = "contato@carrefour.com.br" },
                 License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
             };

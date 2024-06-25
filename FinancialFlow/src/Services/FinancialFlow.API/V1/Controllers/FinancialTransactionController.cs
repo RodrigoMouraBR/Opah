@@ -16,6 +16,15 @@ namespace FinancialFlow.API.V1.Controllers
             _appService = appService;
         }
 
+        /// <summary>
+        ///  - Adicionar uma transação financeira.
+        /// </summary>
+        /// <param name="CustomerId">Simula o ID do cliente</param>        
+        /// <param name="Amount">Valor a ser lançado no sistema</param>
+        /// <param name="Description">Descrição do lançamento</param>
+        /// <param name="TransactionType">Tipo de transação: (PIX =0, Credit = 1, Debit = 2, Boleto = 3)</param>
+        /// <returns>Retorno boleano (true/false)</returns>
+
         [HttpPost("add-financial")]
         public async Task<IActionResult> AddFinancialTransaction([FromBody] FinancialTransactionModel financialTransactionModel)
         {
@@ -23,19 +32,32 @@ namespace FinancialFlow.API.V1.Controllers
             return CustomResponse(result);
         }
 
+        /// <summary>
+        /// Retorna a consulta dos lançamentos consolidados/mês
+        /// </summary>
+        /// <returns></returns>
+
         [HttpGet("MonthlyConsolidated")]
         public async Task<IActionResult> GetMonthlyConsolidatedReportAsync()
         {
             var result = await _appService.GetMonthlyConsolidatedReportAsync();
             return CustomResponse(result);
         }
-
+        /// <summary>
+        /// Retorna a consulta dos lançamentos consolidados/dia
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("DailyConsolidatedReport")]
         public async Task<IActionResult> GetDailyConsolidatedReportAsync()
         {
             var result = await _appService.GetDailyConsolidatedReportAsync();
             return CustomResponse(result);
         }
+
+        /// <summary>
+        /// Retorna a consulta dos lançamentos consolidados/ano
+        /// </summary>
+        /// <returns></returns>
 
         [HttpGet("YearlyConsolidatedReport")]
         public async Task<IActionResult> GetYearlyConsolidatedReportAsync()

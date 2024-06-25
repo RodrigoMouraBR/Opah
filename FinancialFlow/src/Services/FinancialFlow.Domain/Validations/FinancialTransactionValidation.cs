@@ -11,7 +11,7 @@ namespace FinancialFlow.Domain.Validations
            .NotEmpty().WithMessage("CustomerId must not be empty.")
            .Must(BeAValidGuid).WithMessage("CustomerId must be a valid GUID.");
 
-            RuleFor(transaction => transaction.DateCad)
+            RuleFor(transaction => transaction.DateRef)
                 .NotEmpty().WithMessage("Date must not be empty.");
 
             RuleFor(transaction => transaction.Amount)

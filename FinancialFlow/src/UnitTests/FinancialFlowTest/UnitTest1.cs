@@ -47,7 +47,6 @@ namespace FinancialFlowTest
         {
             //ARRANGE
             var fakeTransaction = _profileBogusFixture.GenerateFinancialTransaction_Invalid();
-
             var repositoryMock = new Mock<IFinancialTransactionRepository>();
             var notifierMock = new Mock<INotifier>();
             var mockUnitOfWork = new Mock<IUnitOfWork>();
@@ -57,8 +56,10 @@ namespace FinancialFlowTest
             repositoryMock.Setup(repo => repo.AddFinancialTransaction(It.IsAny<FinancialTransaction>())).Returns(Task.CompletedTask);
             var financialPostingService = new FinancialTransactionService(notifierMock.Object, repositoryMock.Object, loggerMock.Object);
 
+
             //ACT
             await financialPostingService.AddFinancialTransaction(fakeTransaction);
+
 
             //ASSERT
             repositoryMock.Verify(repo => repo.AddFinancialTransaction(fakeTransaction), Times.Never);
